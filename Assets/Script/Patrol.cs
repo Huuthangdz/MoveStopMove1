@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Unity.VisualScripting;
-using UnityEngine.AI;
 
 public class Patrol : IState<enemi>
 {
