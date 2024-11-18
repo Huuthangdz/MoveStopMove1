@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 public class Player : character
 {
-    [SerializeField] GameObject canvasDie;
-
+    [SerializeField] private GameObject canvasDie;
+    [SerializeField] private InputActionReference moveActionToUse;
+    [SerializeField] private float speed;
+    Vector2 moveVector;
     private CounterTime counter = new CounterTime();
     
     // Start is called before the first frame update
@@ -26,9 +29,13 @@ public class Player : character
 
     // Update is called once per frame
     void Update()
-    {
+    {  
         ChangeWeapon(PlayerPrefs.GetInt("Weapon"));
         PlayerPrefs.GetInt("Weapon"); 
+        Attack();
+    }
+    private void Attack()
+    {
         if (Input.GetMouseButtonUp(0))
         {
             character target = GetTargetInRange();
@@ -44,7 +51,11 @@ public class Player : character
             }
         }
     }
-    
+    public void InputPlayer(InputAction.CallbackContext context)
+    {
+         moveVector = context.ReadValue<Vector2>();
+         
+    }
     public override void OnAttack()
     {
         base.OnAttack();

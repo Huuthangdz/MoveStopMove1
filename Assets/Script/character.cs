@@ -17,7 +17,6 @@ public class character : abstract1
     public Transform body;
     public LayerMask Ground;
     public Animator animator;
-    public float speed = 5f;
     public List<character> targets = new List<character>();
     public character target;
     public bool isdead = true;
