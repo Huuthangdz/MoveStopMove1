@@ -21,7 +21,6 @@ public class Player : character
     {
         EnableJoyStickInput();
         OnInit();
-        changeAnim("Idile");
         switch (Random.Range(1, 5))
         {
             case 1: ChangeColor(ColorType.red); break;
@@ -30,6 +29,16 @@ public class Player : character
             case 4: ChangeColor(ColorType.icon); break;
 
             default: Debug.Log("f"); break;
+        }
+        // check xem animator của attack có được gọi không 
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("attack"))
+        {
+            Debug.Log("attack");
+        }
+        else
+        {
+            Debug.Log("not attack");
         }
     }
     public void EnableJoyStickInput()
@@ -69,15 +78,16 @@ public class Player : character
             character target = GetTargetInRange();
             if (target != null)
             {
-                changeAnim("attack");
+                animator.SetBool("Attack",true);
                 OnAttack();
                 RemoveTaget(target);
-            }
-            else
-            {
-                animator.SetTrigger("Idile");
+                Invoke("EndAttack", 1.02f);
             }
         }
+    }
+    private void EndAttack()
+    {
+        animator.SetBool("Attack", false);
     }
     public override void OnAttack()
     {

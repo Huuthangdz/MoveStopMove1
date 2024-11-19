@@ -112,7 +112,10 @@ public class character : abstract1
     {
         if (currentAnim != animName)
         {
-            animator.ResetTrigger(currentAnim);
+            if (!string.IsNullOrEmpty(currentAnim))
+            {
+                animator.ResetTrigger(currentAnim);
+            }
             currentAnim = animName;
             animator.SetTrigger(currentAnim);
         }

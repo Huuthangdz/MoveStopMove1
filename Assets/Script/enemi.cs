@@ -34,16 +34,9 @@ public class enemi : character
 
             default: Debug.Log("đần"); break;
         }
-        //switch (Random.Range(1, 5))
-        //{
-        //    case 1: ChangeColorPant(ColorType.red); break;
-        //    case 2: ChangeColorPant(ColorType.yellow); break;
-        //    case 3: ChangeColorPant(ColorType.green); break;
-        //    case 4: ChangeColorPant(ColorType.icon); break;
+        //if (changeAnim("Run") ){
 
-        //    default: Debug.Log("đần"); break;
-        //}
-
+        //} 
     }
     void Update()
     {

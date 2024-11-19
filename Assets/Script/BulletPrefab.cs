@@ -6,7 +6,6 @@ public class BulletPrefab : MonoBehaviour
     [SerializeField] Transform head;
 
     GameObject currentBullet;
-    private int index;
     // Start is called before the first frame update
     void Start()
     {
