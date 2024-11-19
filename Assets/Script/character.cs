@@ -94,7 +94,6 @@ public class character : abstract1
 
     }
 
-
     public Vector3 checkGround(Vector3 point)
     {
         RaycastHit hit;

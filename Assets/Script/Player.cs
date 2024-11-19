@@ -7,13 +7,19 @@ public class Player : character
     [SerializeField] private GameObject canvasDie;
     [SerializeField] private InputActionReference moveActionToUse;
     [SerializeField] private float speed;
-    Vector2 moveVector;
     private CounterTime counter = new CounterTime();
-    
+
+    [SerializeField] private VariableJoystick variableJoystick;
+    [SerializeField] private Canvas inputCanvas;
+    [SerializeField] private bool isJoyStick;
+    [SerializeField] private CharacterController characterController;
+    [SerializeField] private float rotationSpeed;
+    //[SerializeField] private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        EnableJoyStickInput();
         OnInit();
         changeAnim("Idile");
         switch (Random.Range(1, 5))
@@ -26,13 +32,35 @@ public class Player : character
             default: Debug.Log("f"); break;
         }
     }
+    public void EnableJoyStickInput()
+    {
+        isJoyStick = true;
+        inputCanvas.gameObject.SetActive(true);
+    }
 
-    // Update is called once per frame
     void Update()
     {  
         ChangeWeapon(PlayerPrefs.GetInt("Weapon"));
         PlayerPrefs.GetInt("Weapon"); 
         Attack();
+        MoveJoyStick();
+    }
+    private void MoveJoyStick()
+    {
+        if (isJoyStick)
+        {
+            var movermentDirection = new Vector3(variableJoystick.Direction.x, 0, variableJoystick.Direction.y);
+            characterController.SimpleMove(movermentDirection * speed);
+
+            if (movermentDirection.sqrMagnitude <= 0)
+            {
+                animator.SetBool("Run", false);
+                return;
+            }
+            animator.SetBool("Run", true);
+            var targetRotation = Vector3.RotateTowards(characterController.transform.forward, movermentDirection, rotationSpeed * Time.deltaTime, 0.0f);
+            characterController.transform.rotation = Quaternion.LookRotation(targetRotation);
+        }
     }
     private void Attack()
     {
@@ -47,14 +75,9 @@ public class Player : character
             }
             else
             {
-                changeAnim("Idle");
+                animator.SetTrigger("Idile");
             }
         }
-    }
-    public void InputPlayer(InputAction.CallbackContext context)
-    {
-         moveVector = context.ReadValue<Vector2>();
-         
     }
     public override void OnAttack()
     {

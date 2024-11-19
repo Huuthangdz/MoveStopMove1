@@ -32,7 +32,7 @@ public class CharacterMovementPlayer : MonoBehaviour
 
             if ( movermentDirection.sqrMagnitude <= 0)
             {
-                
+                animator.SetBool("isWalking", false);
                 return;
             }
             animator.SetBool("isWalking", true);
