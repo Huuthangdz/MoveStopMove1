@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 
@@ -14,9 +15,10 @@ public class Player : character
     [SerializeField] private bool isJoyStick;
     [SerializeField] private CharacterController characterController;
     [SerializeField] private float rotationSpeed;
-    //[SerializeField] private Animator animator;
 
-    // Start is called before the first frame update
+    [SerializeField] private GameObject[] bulletPrefabs; // Mảng các bullet prefab
+    [SerializeField] private float throwForce;
+
     void Start()
     {
         EnableJoyStickInput();
@@ -30,16 +32,16 @@ public class Player : character
 
             default: Debug.Log("f"); break;
         }
-        // check xem animator của attack có được gọi không 
 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("attack"))
-        {
-            Debug.Log("attack");
-        }
-        else
-        {
-            Debug.Log("not attack");
-        }
+        // check xem animator của attack có được gọi không 
+        //if (animator.GetCurrentAnimatorStateInfo(0).IsName("attack"))
+        //{
+        //    Debug.Log("attack");
+        //}
+        //else
+        //{
+        //    Debug.Log("not attack");
+        //}
     }
     public void EnableJoyStickInput()
     {
@@ -48,10 +50,10 @@ public class Player : character
     }
 
     void Update()
-    {  
-        ChangeWeapon(PlayerPrefs.GetInt("Weapon"));
-        PlayerPrefs.GetInt("Weapon"); 
-        Attack();
+    {
+        int weaponIndex = PlayerPrefs.GetInt("Weapon");
+        ChangeWeapon(weaponIndex);
+        Attack(weaponIndex);
         MoveJoyStick();
     }
     private void MoveJoyStick()
@@ -71,29 +73,63 @@ public class Player : character
             characterController.transform.rotation = Quaternion.LookRotation(targetRotation);
         }
     }
-    private void Attack()
+    private void Attack(int weaponIndex)
     {
         if (Input.GetMouseButtonUp(0))
         {
-            character target = GetTargetInRange();
-            if (target != null)
-            {
-                animator.SetBool("Attack",true);
-                OnAttack();
-                RemoveTaget(target);
-                Invoke("EndAttack", 1.02f);
-            }
+            StartCoroutine(OnAttack(weaponIndex));
+            Invoke("EndAttack", 1.02f);
         }
     }
     private void EndAttack()
     {
         animator.SetBool("Attack", false);
     }
-    public override void OnAttack()
+    private IEnumerator OnAttack(int weaponIndex)
     {
-        base.OnAttack();
-        counter.Start(Throw, 0.2f);
-
+        yield return new WaitForSeconds(0.1f);
+        character target = GetTargetInRange();
+        if (target != null)
+        {
+            animator.SetBool("Attack", true);
+            //Debug.Log("ThrowBullet");
+            // ThowBullet
+            // Kiểm tra bulletPrefabs
+            //if (bulletPrefabs == null || bulletPrefabs.Length == 0)
+            //{
+            //    Debug.LogError("BulletPrefabs array is not assigned or empty.");
+            //    return;
+            //}
+            // Kiểm tra weaponIndex
+            //if (weaponIndex < 0 || weaponIndex >= bulletPrefabs.Length)
+            //{
+            //    Debug.LogError("Invalid weapon index.");
+            //    return;
+            //}
+            // Kiểm tra target
+            //if (target == null)
+            //{
+            //    Debug.LogError("Target is not assigned.");
+            //    return;
+            //}
+            // Instantiate the bullet
+            GameObject bulletPrefab = bulletPrefabs[weaponIndex];
+            GameObject bulletInstance = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            // Kiểm tra Rigidbody
+            Rigidbody rb = bulletInstance.GetComponent<Rigidbody>();
+            //if (rb == null)
+            //{
+            //    Debug.LogError("Rigidbody component not found on the bullet.");
+            //    return;
+            //}
+            // Calculate direction and apply force
+            Vector3 direction = (target.transform.position - transform.position).normalized;
+            rb.AddForce(direction * throwForce, ForceMode.Impulse);
+            Bullet bullet = bulletInstance.GetComponent<Bullet>();
+            bullet.OnInit(this, target.transform);
+            RemoveTaget(target);
+            // End Throw Bullet    
+        }
     }
     public override void OnDead()
     {

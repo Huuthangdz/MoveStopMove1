@@ -1455,7 +1455,7 @@ Transform:
   - {fileID: 671298241}
   - {fileID: 1532745016}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &151674002
 GameObject:
@@ -3964,7 +3964,7 @@ RectTransform:
   m_Children:
   - {fileID: 1233678741}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6398,51 +6398,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3002862687176329289, guid: 7647629e0d956384aaf28a310687e291, type: 3}
   m_PrefabInstance: {fileID: 1657743505}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &712496267
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 712496269}
-  - component: {fileID: 712496270}
-  m_Layer: 0
-  m_Name: Bullet
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &712496269
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 712496267}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1450727, y: 1.530984, z: -0.14407596}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &712496270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 712496267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 405c0a0e292dd2b4198d26814b66ab4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  head: {fileID: 7580238051883352890}
 --- !u!4 &719500754 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5504128345814881044, guid: 4ff251ed2ed637b48a1a82d4d940b269, type: 3}
@@ -7216,7 +7171,7 @@ Transform:
   - {fileID: 815501969}
   - {fileID: 19770338}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &844695150
 GameObject:
@@ -16277,17 +16232,6 @@ MonoBehaviour:
   gameCanvas: {fileID: 1807743135}
   weaponCanvas: {fileID: 1845925371}
   SkinCanvas: {fileID: 954372717}
-  ListBullet:
-  - {fileID: 1941384972770047246, guid: f76a32dc3e2506b41abf86b050cbfade, type: 3}
-  - {fileID: 3319058441365279564, guid: c76b605b7c61a0b49b379d0dedf0de10, type: 3}
-  - {fileID: 7245794030865719005, guid: 23bab8b7d5978bb498995dd7a59fd694, type: 3}
-  - {fileID: 9144982268186846214, guid: 6c2005ddcbc79a54589842744aaef9e8, type: 3}
-  - {fileID: 9210790141615828995, guid: 20076d6e8863eff4fa28f929fcd1db41, type: 3}
-  - {fileID: 2088223697991330242, guid: ea665195c104d364f9637eacfa48d60c, type: 3}
-  - {fileID: 2589954020333308629, guid: b151825304e56f1418d9d53ac67617ca, type: 3}
-  - {fileID: 1754332939664314604, guid: 3e97026a236c377448aaa6ee544717da, type: 3}
-  - {fileID: 518767151285416474, guid: 8db0a29187ba1a5409c7a98b0b403627, type: 3}
-  - {fileID: 3207609493030714217, guid: 782d989a04d6cbe48a83be83f441b6be, type: 3}
   ListPants:
   - {fileID: 2100000, guid: ee74b7852a30b174abf68aa6fa3265ec, type: 2}
   - {fileID: 2100000, guid: 4cafe89670a77c143b3fefcd7c6ad4b2, type: 2}
@@ -18983,7 +18927,7 @@ Transform:
   - {fileID: 2993916034977961612}
   - {fileID: 5371857943044968073}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7580238052902764747
 MonoBehaviour:
@@ -19009,8 +18953,7 @@ MonoBehaviour:
   isdead: 1
   rb: {fileID: 7580238052902764744}
   renderer: {fileID: 7580238051372598017}
-  BulletPrefab: {fileID: 712496267}
-  Weapon: {fileID: 0}
+  BulletPrefab: {fileID: 0}
   indicatorPoint: {fileID: 491244805062385379}
   skin: {fileID: 1903716101}
   canvasDie: {fileID: 697095916}
@@ -19021,6 +18964,18 @@ MonoBehaviour:
   isJoyStick: 0
   characterController: {fileID: 7580238052902764748}
   rotationSpeed: 6
+  bulletPrefabs:
+  - {fileID: 1941384972770047246, guid: f76a32dc3e2506b41abf86b050cbfade, type: 3}
+  - {fileID: 3319058441365279564, guid: c76b605b7c61a0b49b379d0dedf0de10, type: 3}
+  - {fileID: 7245794030865719005, guid: 23bab8b7d5978bb498995dd7a59fd694, type: 3}
+  - {fileID: 9144982268186846214, guid: 6c2005ddcbc79a54589842744aaef9e8, type: 3}
+  - {fileID: 9210790141615828995, guid: 20076d6e8863eff4fa28f929fcd1db41, type: 3}
+  - {fileID: 2088223697991330242, guid: ea665195c104d364f9637eacfa48d60c, type: 3}
+  - {fileID: 2589954020333308629, guid: b151825304e56f1418d9d53ac67617ca, type: 3}
+  - {fileID: 1754332939664314604, guid: 3e97026a236c377448aaa6ee544717da, type: 3}
+  - {fileID: 518767151285416474, guid: 8db0a29187ba1a5409c7a98b0b403627, type: 3}
+  - {fileID: 3207609493030714217, guid: 782d989a04d6cbe48a83be83f441b6be, type: 3}
+  throwForce: 6
 --- !u!143 &7580238052902764748
 CharacterController:
   m_ObjectHideFlags: 0

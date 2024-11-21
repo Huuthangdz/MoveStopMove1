@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
@@ -22,7 +22,6 @@ public class Bullet : MonoBehaviour
         transform.Translate(transform.forward * speed * Time.deltaTime, Space.World);
         child.Rotate(Vector3.up * -6f, Space.Self);
         counterTime.Excute();
-
     }
 
     public void OnInit(character Character,Transform target)
@@ -31,7 +30,7 @@ public class Bullet : MonoBehaviour
         this.target = target;
         transform.forward = (target.position - transform.position).normalized;
         //transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
-        counterTime.Start(deactiveBullet,1f);
+        counterTime.Start(deactiveBullet,1.5f);
     }
 
     public void deactiveBullet()

@@ -122,7 +122,6 @@ public class enemi : character
         }
     }
 
-
     private void ChangeStateAfterAttack()
     {
 

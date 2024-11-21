@@ -23,8 +23,7 @@ public class character : abstract1
 
     [SerializeField] Rigidbody rb;
     [SerializeField] private new Renderer renderer;
-    public GameObject BulletPrefab;
-    [SerializeField] GameObject Weapon;
+    [SerializeField] GameObject BulletPrefab;
     [SerializeField] GameObject indicatorPoint;
     public Skin skin;
 
@@ -124,7 +123,7 @@ public class character : abstract1
     {
         targetIndicator = levelManager.Ins.CreateIndicatorPanel(indicatorPoint.transform);
     }
-    public override void OnAttack()
+    public override void OnAttack( )
     {
 
     }

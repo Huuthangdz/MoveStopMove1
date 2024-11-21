@@ -8,7 +8,7 @@ public class GameController : Singleton<GameController>
     [SerializeField] GameObject gameCanvas;
     [SerializeField] GameObject weaponCanvas;
     [SerializeField] GameObject SkinCanvas;
-    [SerializeField] GameObject[] ListBullet;
+    //[SerializeField] GameObject[] ListBullet;
     [SerializeField] Material[] ListPants;
     [SerializeField] GameObject[] ListWeapon;
     [SerializeField] GameObject[] ListHair;
@@ -53,10 +53,10 @@ public class GameController : Singleton<GameController>
     {
         return ListWeapon[index];
     }
-    public GameObject GetCurrentBullet(int index)
-    {
-        return ListBullet[index];
-    }
+    //public GameObject GetCurrentBullet(int index)
+    //{
+    //    return ListBullet[index];
+    //}
     public Material GetCurrentPants(int index)
     {
         return ListPants[index];

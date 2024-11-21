@@ -285,7 +285,6 @@ MonoBehaviour:
   rb: {fileID: 121366005132257893}
   renderer: {fileID: 121366005373763188}
   BulletPrefab: {fileID: 3207609493030714217, guid: 782d989a04d6cbe48a83be83f441b6be, type: 3}
-  Weapon: {fileID: 7855249269901286733}
   indicatorPoint: {fileID: 2781492897703262552}
   skin: {fileID: 0}
   agent: {fileID: 4801304584232111868}
