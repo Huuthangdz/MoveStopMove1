@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
@@ -11,7 +11,7 @@ public class levelManager : Singleton<levelManager>
     private List<enemi> enemis = new List<enemi>();
     [SerializeField] private GameObject botPrefabs;
 
-
+    public int aliveBot;
     private int totalCharacterAlive;
     public int totalCharacter => botAmount + 1;
     [SerializeField] GameObject indicatorPrefabs;
@@ -24,8 +24,25 @@ public class levelManager : Singleton<levelManager>
     void Start()
     {
         totalCharacterAlive = totalCharacter;
-        //OnInit();     
+        aliveBot = botAmount;
+    }
 
+    private void Update()
+    {
+        Debug.Log(aliveBot);
+        InitBotAgain();
+    }
+    public void AliveBot()
+    {
+        aliveBot--;
+    }
+    private void InitBotAgain()
+    {
+        if (aliveBot < botAmount)
+        {
+            NewBot();
+            aliveBot++;
+        }
     }
     public TargetIndicator CreateIndicatorPanel(Transform target)
     {
@@ -37,13 +54,13 @@ public class levelManager : Singleton<levelManager>
     }
     public void OnInit()
     {
-        textAlive.text = "Alive : " + totalCharacterAlive.ToString();
-        //bot
+        textAlive.text = "Alive : " + aliveBot.ToString();
         for (int i = 0; i < botAmount; i++)
         {
             NewBot();
         }
-    } 
+    }
+    
     public void NewBot()
     {
         enemi bot = Instantiate(botPrefabs, GetRandomPointNavmesh(), Quaternion.identity).GetComponent<enemi>();
@@ -52,7 +69,7 @@ public class levelManager : Singleton<levelManager>
     public void InitCharacterAlive()
     {
         totalCharacterAlive--;
-        textAlive.text = "Alive : " + totalCharacterAlive.ToString();
+        textAlive.text = "Alive : " + aliveBot.ToString();
     }
     public Vector3 GetRandomPointNavmesh() 
     {
@@ -64,5 +81,4 @@ public class levelManager : Singleton<levelManager>
         }
         return randomPoint;
     }
-
 }

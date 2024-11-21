@@ -82,6 +82,7 @@ public class enemi : character
         agent.enabled = false;
         counter.Start(wait, 3f);
         Invoke(nameof(disableSelf), 3f);
+        levelManager.Ins.AliveBot();
     }
 
     private void wait()
@@ -92,6 +93,11 @@ public class enemi : character
     private void disableSelf()
     {
         gameObject.SetActive(false);
+        Invoke("OnDestroy", 1f);
+    }
+    private void OnDestroy()
+    {
+        Destroy(gameObject);
     }
     public override void OnAttack()
     {

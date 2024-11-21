@@ -24,6 +24,10 @@ public class Bullet : MonoBehaviour
         counterTime.Excute();
     }
 
+    private void OnDestroy()
+    {
+        Destroy(gameObject);
+    }
     public void OnInit(character Character,Transform target)
     {
         this.character = Character;
@@ -35,7 +39,8 @@ public class Bullet : MonoBehaviour
 
     public void deactiveBullet()
     {
-        gameObject.SetActive(false);
+        gameObject.SetActive(false);    
+        Invoke("OnDestroy", 1f);
     }
     private void OnTriggerEnter(Collider other)
     {

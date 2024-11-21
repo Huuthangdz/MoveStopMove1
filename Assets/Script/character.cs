@@ -56,7 +56,7 @@ public class character : abstract1
     {
         //Weapon.SetActive(false);
         Bullet bullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity).GetComponent<Bullet>();
-        bullet.OnInit(this, target.transform);
+        bullet.OnInit(this, target.transform);  
         bullet.GetComponent<Weapon>().Throw();
     }
     public void UpdatePoints()
@@ -68,7 +68,6 @@ public class character : abstract1
     public virtual void RemoveTaget(character target)
     {
         targets.Remove(target);
-        //this.target = null;
     }
 
     public character GetTargetInRange()
