@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.TextCore.Text;
 
 
 public class Player : character
@@ -15,9 +17,10 @@ public class Player : character
     [SerializeField] private bool isJoyStick;
     [SerializeField] private CharacterController characterController;
     [SerializeField] private float rotationSpeed;
-
     [SerializeField] private GameObject[] bulletPrefabs; // Mảng các bullet prefab
     [SerializeField] private float throwForce;
+
+    public int scoreCamera;
 
     void Start()
     {
@@ -42,6 +45,7 @@ public class Player : character
         //{
         //    Debug.Log("not attack");
         //}
+        scoreCamera = score;
     }
     public void EnableJoyStickInput()
     {
@@ -51,6 +55,7 @@ public class Player : character
 
     void Update()
     {
+        //Debug.Log(scoreCamera);
         int weaponIndex = PlayerPrefs.GetInt("Weapon");
         ChangeWeapon(weaponIndex);
         Attack(weaponIndex);

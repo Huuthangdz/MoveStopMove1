@@ -32,7 +32,7 @@ public class character : abstract1
 
     private GameObject currentBullet;
     private string currentAnim;
-    private int score = 1;
+    public int score = 1;
 
     public virtual void AddTarget(character target)
     {
@@ -62,7 +62,7 @@ public class character : abstract1
     public void UpdatePoints()
     {
         score++;
-        targetIndicator.SetScore(score);
+        targetIndicator.SetScore(score); 
         body.localScale = new Vector3(1f + (score - 1) * 0.2f, 1f + (score - 1) * 0.2f, 1f + (score - 1) * 0.2f);
     }
     public virtual void RemoveTaget(character target)

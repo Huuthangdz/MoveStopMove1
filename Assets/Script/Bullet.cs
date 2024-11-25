@@ -44,10 +44,10 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")  && other.gameObject != character.gameObject)
+        if (other.CompareTag("Player") && other.gameObject != character.gameObject) 
         {
             character.UpdatePoints();
             other.GetComponent<character>().OnDead();
-        }
+        } 
     } 
 }

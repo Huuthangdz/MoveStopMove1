@@ -7,8 +7,13 @@ public class Camera1 : MonoBehaviour
 
     [SerializeField] Vector3 offset;
 
+    public Player player;
+    private void Update()
+    {
+        Debug.Log(player.scoreCamera);
+    }
     private void LateUpdate()
     {
-        TF.position = Vector3.Lerp(TF.position, playerTF.position + offset, Time.deltaTime * 5f);
+        TF.position = Vector3.Lerp(TF.position,(playerTF.position + offset) * player.scoreCamera, Time.deltaTime * 5f);
     }
 }

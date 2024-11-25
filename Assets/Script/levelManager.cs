@@ -11,12 +11,14 @@ public class levelManager : Singleton<levelManager>
     private List<enemi> enemis = new List<enemi>();
     [SerializeField] private GameObject botPrefabs;
 
-    public int aliveBot;
+    private int aliveBot;
+    private int Score;
     private int totalCharacterAlive;
     public int totalCharacter => botAmount + 1;
     [SerializeField] GameObject indicatorPrefabs;
     [SerializeField] GameObject canvasIndicator;
     [SerializeField] TextMeshProUGUI textAlive;
+
 
     private static string[] randomName = { "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10", "A11", "A12" };
     // Start is called before the first frame update
@@ -25,16 +27,22 @@ public class levelManager : Singleton<levelManager>
     {
         totalCharacterAlive = totalCharacter;
         aliveBot = botAmount;
+        Score = 0;  
     }
 
     private void Update()
     {
-        Debug.Log(aliveBot);
+        Debug.Log(Score);
         InitBotAgain();
+        
     }
     public void AliveBot()
     {
         aliveBot--;
+    }
+    public void ScorePlayer()
+    {
+        Score++;
     }
     private void InitBotAgain()
     {
@@ -54,7 +62,7 @@ public class levelManager : Singleton<levelManager>
     }
     public void OnInit()
     {
-        textAlive.text = "Alive : " + aliveBot.ToString();
+        textAlive.text = "Score : " + Score.ToString();
         for (int i = 0; i < botAmount; i++)
         {
             NewBot();
@@ -69,7 +77,7 @@ public class levelManager : Singleton<levelManager>
     public void InitCharacterAlive()
     {
         totalCharacterAlive--;
-        textAlive.text = "Alive : " + aliveBot.ToString();
+        textAlive.text = "Score : " + Score.ToString();
     }
     public Vector3 GetRandomPointNavmesh() 
     {
