@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BankMenu.unity
     guid: de36bbc95c0b7014e95e23e6fe1069f3
   - enabled: 1

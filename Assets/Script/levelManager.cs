@@ -32,9 +32,7 @@ public class levelManager : Singleton<levelManager>
 
     private void Update()
     {
-        Debug.Log(Score);
         InitBotAgain();
-        
     }
     public void AliveBot()
     {

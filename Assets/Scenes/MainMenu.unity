@@ -715,6 +715,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3af2651063ca9b42ae1592102e99ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Play: {fileID: 44497445}
+  Weapon: {fileID: 1612248025}
+  Skin: {fileID: 1997143835}
 --- !u!1 &657770324
 GameObject:
   m_ObjectHideFlags: 0

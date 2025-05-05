@@ -273,7 +273,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorType: 4
-  player: {fileID: 121366005132257895}
   body: {fileID: 121366005132257895}
   Ground:
     serializedVersion: 2
@@ -282,11 +281,11 @@ MonoBehaviour:
   targets: []
   target: {fileID: 0}
   isdead: 1
-  rb: {fileID: 121366005132257893}
   renderer: {fileID: 121366005373763188}
   BulletPrefab: {fileID: 3207609493030714217, guid: c065333471289e040b80b1be994e9f89, type: 3}
   indicatorPoint: {fileID: 2781492897703262552}
   skin: {fileID: 0}
+  score: 1
   agent: {fileID: 4801304584232111868}
   isDeath: 0
 --- !u!54 &121366005132257893

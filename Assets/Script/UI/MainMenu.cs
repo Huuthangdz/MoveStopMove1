@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-
     [SerializeField] Button Play;
     [SerializeField] Button Weapon;
     [SerializeField] Button Skin;

@@ -32,8 +32,9 @@ public class Bullet : MonoBehaviour
     {
         this.character = Character;
         this.target = target;
-        transform.forward = (target.position - transform.position).normalized;
-        //transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+        Vector3 direction = new Vector3(target.position.x, transform.position.y, target.position.z) - transform.position;
+        transform.forward = direction.normalized;
+        transform.position = new Vector3(transform.position.x, target.position.y + 1f, transform.position.z);
         counterTime.Start(deactiveBullet,1.5f);
     }
 

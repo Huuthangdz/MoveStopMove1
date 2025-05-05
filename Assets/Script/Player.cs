@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SocialPlatforms.Impl;
@@ -19,47 +20,42 @@ public class Player : character
     [SerializeField] private float rotationSpeed;
     [SerializeField] private GameObject[] bulletPrefabs; // Mảng các bullet prefab
     [SerializeField] private float throwForce;
+    [SerializeField] private bool isCanMove;
 
     public int scoreCamera;
 
     void Start()
     {
+        isCanMove = false;
         EnableJoyStickInput();
         OnInit();
-        switch (Random.Range(1, 5))
+
+        switch (Random.Range(1,4))
         {
             case 1: ChangeColor(ColorType.red); break;
             case 2: ChangeColor(ColorType.yellow); break;
             case 3: ChangeColor(ColorType.green); break;
             case 4: ChangeColor(ColorType.icon); break;
-
-            default: Debug.Log("f"); break;
         }
-
-        // check xem animator của attack có được gọi không 
-        //if (animator.GetCurrentAnimatorStateInfo(0).IsName("attack"))
-        //{
-        //    Debug.Log("attack");
-        //}
-        //else
-        //{
-        //    Debug.Log("not attack");
-        //}
         scoreCamera = score;
+
+        ChangeHair(PlayerPrefs.GetInt("Hair"));
+        ChangePant(PlayerPrefs.GetInt("Pants"));
+        ChangeWeapon(PlayerPrefs.GetInt("Weapon"));
     }
     public void EnableJoyStickInput()
     {
         isJoyStick = true;
+        Invoke("isCanAttack", 1f);
         inputCanvas.gameObject.SetActive(true);
     }
 
     void Update()
     {
-        //Debug.Log(scoreCamera);
         int weaponIndex = PlayerPrefs.GetInt("Weapon");
         ChangeWeapon(weaponIndex);
-        Attack(weaponIndex);
         MoveJoyStick();
+        Attack(weaponIndex);
     }
     private void MoveJoyStick()
     {
@@ -67,7 +63,6 @@ public class Player : character
         {
             var movermentDirection = new Vector3(variableJoystick.Direction.x, 0, variableJoystick.Direction.y);
             characterController.SimpleMove(movermentDirection * speed);
-
             if (movermentDirection.sqrMagnitude <= 0)
             {
                 animator.SetBool("Run", false);
@@ -82,9 +77,16 @@ public class Player : character
     {
         if (Input.GetMouseButtonUp(0))
         {
-            StartCoroutine(OnAttack(weaponIndex));
-            Invoke("EndAttack", 1.02f);
+            if (isCanMove)
+            {
+                StartCoroutine(OnAttack(weaponIndex));
+                Invoke("EndAttack", 1.02f);
+            }
         }
+    }
+    private bool isCanAttack()
+    {
+        return isCanMove = true;
     }
     private void EndAttack()
     {
@@ -97,43 +99,14 @@ public class Player : character
         if (target != null)
         {
             animator.SetBool("Attack", true);
-            //Debug.Log("ThrowBullet");
-            // ThowBullet
-            // Kiểm tra bulletPrefabs
-            //if (bulletPrefabs == null || bulletPrefabs.Length == 0)
-            //{
-            //    Debug.LogError("BulletPrefabs array is not assigned or empty.");
-            //    return;
-            //}
-            // Kiểm tra weaponIndex
-            //if (weaponIndex < 0 || weaponIndex >= bulletPrefabs.Length)
-            //{
-            //    Debug.LogError("Invalid weapon index.");
-            //    return;
-            //}
-            // Kiểm tra target
-            //if (target == null)
-            //{
-            //    Debug.LogError("Target is not assigned.");
-            //    return;
-            //}
-            // Instantiate the bullet
             GameObject bulletPrefab = bulletPrefabs[weaponIndex];
             GameObject bulletInstance = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-            // Kiểm tra Rigidbody
             Rigidbody rb = bulletInstance.GetComponent<Rigidbody>();
-            //if (rb == null)
-            //{
-            //    Debug.LogError("Rigidbody component not found on the bullet.");
-            //    return;
-            //}
-            // Calculate direction and apply force
-            Vector3 direction = (target.transform.position - transform.position).normalized;
+            Vector3 direction = (new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z) - transform.position).normalized;
             rb.AddForce(direction * throwForce, ForceMode.Impulse);
             Bullet bullet = bulletInstance.GetComponent<Bullet>();
             bullet.OnInit(this, target.transform);
             RemoveTaget(target);
-            // End Throw Bullet    
         }
     }
     public override void OnDead()
@@ -144,8 +117,18 @@ public class Player : character
     }
     public override void OnInit()
     {
-        skin.ChangeWeapon(PlayerPrefs.GetInt("weapon"));
-        skin.ChangePant(PlayerPrefs.GetInt("Pants"));
         base.OnInit();
+    }
+    public override void ChangeHair(int index)
+    {
+        base.ChangeHair(PlayerPrefs.GetInt("Hair"));
+    }
+    public override void ChangePant(int index)
+    {
+        base.ChangePant(PlayerPrefs.GetInt("Pants"));
+    }
+    public override void ChangeWeapon(int index)
+    {
+        base.ChangeWeapon(PlayerPrefs.GetInt("Weapon"));
     }
 }

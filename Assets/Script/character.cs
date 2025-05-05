@@ -11,9 +11,7 @@ public enum ColorType
 }
 public class character : abstract1
 {
-
     public ColorType colorType;
-    public Transform player;
     public Transform body;
     public LayerMask Ground;
     public Animator animator;
@@ -21,16 +19,13 @@ public class character : abstract1
     public character target;
     public bool isdead = true;
 
-    [SerializeField] Rigidbody rb;
     [SerializeField] private new Renderer renderer;
     [SerializeField] GameObject BulletPrefab;
     [SerializeField] GameObject indicatorPoint;
     public Skin skin;
 
-
     protected TargetIndicator targetIndicator;
 
-    private GameObject currentBullet;
     private string currentAnim;
     public int score = 1;
 
@@ -39,16 +34,16 @@ public class character : abstract1
         targets.Add(target);
     }
 
-    public void ChangeWeapon(int index)
+    public virtual void ChangeWeapon(int index)
     {
         skin.ChangeWeapon(index);
     }
 
-    public void ChangePant(int index)
+    public virtual void ChangePant(int index)
     {
         skin.ChangePant(index);
     }
-    public void ChangeHair(int index)
+    public virtual void ChangeHair(int index)
     {
         skin.ChangeHair(index);
     }
