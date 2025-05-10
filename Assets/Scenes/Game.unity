@@ -6325,7 +6325,6 @@ MonoBehaviour:
   botPrefabs: {fileID: 121366005132257883, guid: dd60cf5113073c44db8fccc3481077ee, type: 3}
   indicatorPrefabs: {fileID: 2188311167471356954, guid: 558250901d7cde145bec56a1cdddbd11, type: 3}
   canvasIndicator: {fileID: 1807743135}
-  textAlive: {fileID: 2110558310}
 --- !u!1 &828084881
 GameObject:
   m_ObjectHideFlags: 0
@@ -7038,7 +7037,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 10
   m_Depth: -1
   m_CullingMask:
@@ -7063,7 +7062,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: -0.02, y: 16.48, z: -15.32}
+  m_LocalPosition: {x: 0, y: 13, z: -12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7084,7 +7083,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TF: {fileID: 963194228}
   playerTF: {fileID: 7580238052902764746}
-  offset: {x: -0.02, y: 16, z: -15}
+  offset: {x: 0, y: 13, z: -12}
   player: {fileID: 7580238052902764747}
 --- !u!1 &973960343
 GameObject:
@@ -18949,7 +18948,7 @@ MonoBehaviour:
   - {fileID: 3207609493030714217, guid: 782d989a04d6cbe48a83be83f441b6be, type: 3}
   throwForce: 6
   isCanMove: 0
-  scoreCamera: 0
+  ScoreUI: {fileID: 2110558310}
 --- !u!143 &7580238052902764748
 CharacterController:
   m_ObjectHideFlags: 0

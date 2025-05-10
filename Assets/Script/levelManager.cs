@@ -17,7 +17,6 @@ public class levelManager : Singleton<levelManager>
     public int totalCharacter => botAmount + 1;
     [SerializeField] GameObject indicatorPrefabs;
     [SerializeField] GameObject canvasIndicator;
-    [SerializeField] TextMeshProUGUI textAlive;
 
 
     private static string[] randomName = { "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10", "A11", "A12" };
@@ -60,7 +59,6 @@ public class levelManager : Singleton<levelManager>
     }
     public void OnInit()
     {
-        textAlive.text = "Score : " + Score.ToString();
         for (int i = 0; i < botAmount; i++)
         {
             NewBot();
@@ -75,7 +73,6 @@ public class levelManager : Singleton<levelManager>
     public void InitCharacterAlive()
     {
         totalCharacterAlive--;
-        textAlive.text = "Score : " + Score.ToString();
     }
     public Vector3 GetRandomPointNavmesh() 
     {

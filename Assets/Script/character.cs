@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public enum ColorType
@@ -20,8 +21,8 @@ public class character : abstract1
     public bool isdead = true;
 
     [SerializeField] private new Renderer renderer;
-    [SerializeField] GameObject BulletPrefab;
-    [SerializeField] GameObject indicatorPoint;
+    [SerializeField] public GameObject BulletPrefab;
+    [SerializeField] private GameObject indicatorPoint;
     public Skin skin;
 
     protected TargetIndicator targetIndicator;

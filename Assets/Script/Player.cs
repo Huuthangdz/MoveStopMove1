@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Runtime.InteropServices;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SocialPlatforms.Impl;
@@ -11,8 +12,6 @@ public class Player : character
     [SerializeField] private GameObject canvasDie;
     [SerializeField] private InputActionReference moveActionToUse;
     [SerializeField] private float speed;
-    private CounterTime counter = new CounterTime();
-
     [SerializeField] private VariableJoystick variableJoystick;
     [SerializeField] private Canvas inputCanvas;
     [SerializeField] private bool isJoyStick;
@@ -21,8 +20,7 @@ public class Player : character
     [SerializeField] private GameObject[] bulletPrefabs; // Mảng các bullet prefab
     [SerializeField] private float throwForce;
     [SerializeField] private bool isCanMove;
-
-    public int scoreCamera;
+    [SerializeField] private TextMeshProUGUI ScoreUI; 
 
     void Start()
     {
@@ -37,11 +35,12 @@ public class Player : character
             case 3: ChangeColor(ColorType.green); break;
             case 4: ChangeColor(ColorType.icon); break;
         }
-        scoreCamera = score;
 
         ChangeHair(PlayerPrefs.GetInt("Hair"));
         ChangePant(PlayerPrefs.GetInt("Pants"));
         ChangeWeapon(PlayerPrefs.GetInt("Weapon"));
+
+        ScoreUI.text = score.ToString();
     }
     public void EnableJoyStickInput()
     {
@@ -56,6 +55,8 @@ public class Player : character
         ChangeWeapon(weaponIndex);
         MoveJoyStick();
         Attack(weaponIndex);
+        ScoreUI.text = "Score : " + score.ToString();
+
     }
     private void MoveJoyStick()
     {
@@ -114,6 +115,7 @@ public class Player : character
         base.OnDead();
         GameController.Ins.PlayerDead();
         canvasDie.SetActive(true);
+        Invoke("CounterPauseGame", 1f);
     }
     public override void OnInit()
     {
@@ -130,5 +132,9 @@ public class Player : character
     public override void ChangeWeapon(int index)
     {
         base.ChangeWeapon(PlayerPrefs.GetInt("Weapon"));
+    }
+    private void CounterPauseGame()
+    {
+        Time.timeScale = 0;
     }
 }

@@ -32,6 +32,14 @@ public class Bullet : MonoBehaviour
     {
         this.character = Character;
         this.target = target;
+        if (character == null)
+        {
+            Debug.LogError("Character is not assigned in Bullet script.");
+        }
+        if (target == null)
+        {
+            Debug.LogError("Target is not assigned in Bullet script.");
+        }
         Vector3 direction = new Vector3(target.position.x, transform.position.y, target.position.z) - transform.position;
         transform.forward = direction.normalized;
         transform.position = new Vector3(transform.position.x, target.position.y + 1f, transform.position.z);

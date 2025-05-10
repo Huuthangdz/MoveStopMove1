@@ -1,8 +1,7 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class attackState : IState<enemi>
 {
-
     public void OnEnter(enemi e)
     {
         e.OnMoveStop();

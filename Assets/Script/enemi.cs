@@ -80,17 +80,17 @@ public class enemi : character
         base.OnDead();
         ChangeState(null);
         agent.enabled = false;
-        counter.Start(wait, 3f);
-        Invoke(nameof(disableSelf), 3f);
+        counter.Start(Wait, 3f);
+        Invoke(nameof(DisableSelf), 3f);
         levelManager.Ins.AliveBot();
     }
 
-    private void wait()
+    private void Wait()
     {
         GetComponent<CapsuleCollider>().enabled = false;
     }
 
-    private void disableSelf()
+    private void DisableSelf()
     {
         gameObject.SetActive(false);
         Invoke("OnDestroy", 1f);
@@ -102,9 +102,19 @@ public class enemi : character
     public override void OnAttack()
     {
         base.OnAttack();
-        target = GetTargetInRange();
-        changeAnim("attack");
-        counter.Start(Throw, 0.5f);
+        character target = GetTargetInRange();
+        if ( target != null)
+        {
+            changeAnim("attack");
+            GameObject bulletPrefab = BulletPrefab;
+            GameObject bulletInstance = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            Rigidbody rb = bulletInstance.GetComponent<Rigidbody>();
+            Vector3 direction = (new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z) - transform.position).normalized;
+            rb.AddForce(direction * 6, ForceMode.Impulse);
+            Bullet bullet = bulletInstance.GetComponent<Bullet>();
+            bullet.OnInit(this, target.transform);
+            RemoveTaget(target);
+        }
     }
 
     public override void changeAnim(string animName)
@@ -121,13 +131,22 @@ public class enemi : character
     public override void AddTarget(character target)
     {
         base.AddTarget(target);
-        if (Random.Range(0, 2) == 0)
+        if (IsInCameraView(transform.position))
         {
-            ChangeState(new attackState());
-            Invoke(nameof(ChangeStateAfterAttack), 1f);
+            if (Random.Range(0, 10) < 7)
+            {
+                ChangeState(new attackState());
+                Invoke(nameof(ChangeStateAfterAttack), 1f);
+            }
         }
     }
-
+    private bool IsInCameraView(Vector3 position)
+    {
+        Vector3 viewportPoint = Camera.main.WorldToViewportPoint(position);
+        return viewportPoint.x >= 0 && viewportPoint.x <= 1 &&
+               viewportPoint.y >= 0 && viewportPoint.y <= 1 &&
+               viewportPoint.z > 0;
+    }
     private void ChangeStateAfterAttack()
     {
 
@@ -148,5 +167,4 @@ public class enemi : character
         
         base.OnInit();
     }
-
 }
