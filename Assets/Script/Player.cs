@@ -115,7 +115,7 @@ public class Player : character
         base.OnDead();
         GameController.Ins.PlayerDead();
         canvasDie.SetActive(true);
-        Invoke("CounterPauseGame", 1f);
+        Invoke("CounterPauseGame", 2f);
     }
     public override void OnInit()
     {

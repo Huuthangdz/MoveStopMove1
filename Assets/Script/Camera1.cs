@@ -10,12 +10,11 @@ public class Camera1 : MonoBehaviour
     public Player player;
     private void LateUpdate()
     {
-        float adjustedY = offset.y + player.score * 0.5f;
-        float adjustedZ = offset.z - player.score * 0.5f;
+        float adjustedY = offset.y + player.score * 1f;
+        float adjustedZ = offset.z - player.score * 1f;
 
         Vector3 adjustedOffset = new Vector3(offset.x, adjustedY, adjustedZ);
         TF.position = Vector3.Lerp(TF.position,(playerTF.position + adjustedOffset), Time.deltaTime * 10f);
-        Debug.Log(adjustedOffset);
     }
 
 }

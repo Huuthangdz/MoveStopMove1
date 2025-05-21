@@ -14,7 +14,6 @@ public class enemi : character
     public CounterTime Counter => counter;
     public bool isDeath = false;
 
-
     private Vector3 destionation;
     private CounterTime counter = new CounterTime();
 
@@ -34,9 +33,6 @@ public class enemi : character
 
             default: Debug.Log("đần"); break;
         }
-        //if (changeAnim("Run") ){
-
-        //} 
     }
     void Update()
     {
@@ -80,7 +76,7 @@ public class enemi : character
         base.OnDead();
         ChangeState(null);
         agent.enabled = false;
-        counter.Start(Wait, 3f);
+        counter.Start(Wait, 0.5f);
         Invoke(nameof(DisableSelf), 3f);
         levelManager.Ins.AliveBot();
     }
@@ -110,7 +106,7 @@ public class enemi : character
             GameObject bulletInstance = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             Rigidbody rb = bulletInstance.GetComponent<Rigidbody>();
             Vector3 direction = (new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z) - transform.position).normalized;
-            rb.AddForce(direction * 6, ForceMode.Impulse);
+            rb.AddForce(direction * 5, ForceMode.Impulse);
             Bullet bullet = bulletInstance.GetComponent<Bullet>();
             bullet.OnInit(this, target.transform);
             RemoveTaget(target);

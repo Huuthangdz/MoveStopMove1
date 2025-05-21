@@ -5,12 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/BankMenu.unity
-    guid: de36bbc95c0b7014e95e23e6fe1069f3
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: d0a0da620bf56a84083f0b16f27784b8
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab

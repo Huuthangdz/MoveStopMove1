@@ -76,9 +76,9 @@ public class levelManager : Singleton<levelManager>
     }
     public Vector3 GetRandomPointNavmesh() 
     {
-        Vector3 randomPoint = new Vector3(Random.Range(-47f,47f), 0.583f, Random.Range(-47f,47f));
+        Vector3 randomPoint = new Vector3(Random.Range(-15f,15f), 0f, Random.Range(-10f,10f));
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomPoint,out hit, 10f, 1))    
+        if (NavMesh.SamplePosition(randomPoint,out hit,10f, 1))    
         {
             return hit.position;        
         }

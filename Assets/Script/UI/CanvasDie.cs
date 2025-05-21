@@ -11,20 +11,13 @@ public class CanvasDie : MonoBehaviour
     void Start()
     {
         mainMenu.onClick.AddListener(() => ComeMain());
-        shop.onClick.AddListener(() => comeShop());
+        GameController.Ins.TurnOffSettingScene();
     }
 
     public void ComeMain()
     {
         canvasDie.SetActive(false);
-        GameController.Ins.comeHome3();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1;
-    }
-    public void comeShop()
-    {
-        GameController.Ins.ChangeSkin();
-        canvasDie.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

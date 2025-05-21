@@ -59,7 +59,7 @@ public class character : abstract1
     {
         score++;
         targetIndicator.SetScore(score); 
-        body.localScale = new Vector3(1f + (score - 1) * 0.2f, 1f + (score - 1) * 0.2f, 1f + (score - 1) * 0.2f);
+        body.localScale = new Vector3(1f + (score - 1) * 0.1f, 1f + (score - 1) * 0.1f, 1f + (score - 1) * 0.1f);
     }
     public virtual void RemoveTaget(character target)
     {

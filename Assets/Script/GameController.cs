@@ -75,7 +75,10 @@ public class GameController : Singleton<GameController>
         mainMenuCanvas.SetActive(false);
         weaponCanvas.SetActive(true);
     }
-
+    public void TurnOffSettingScene()
+    {
+        gameCanvas.SetActive(false);
+    }
     public void comeHome1()
     {
         mainMenuCanvas.SetActive(true);
@@ -90,7 +93,6 @@ public class GameController : Singleton<GameController>
     }
     public void comeHome3()
     {
-        mainMenuCanvas.SetActive(true);
         joyStick.SetActive(false);
     }
     public void PlayerDead()
@@ -101,6 +103,10 @@ public class GameController : Singleton<GameController>
     {
         SkinCanvas.SetActive(true);
         mainMenuCanvas.SetActive(false);
+    }
+    public void ChangeSkin01()
+    {
+        SkinCanvas.SetActive(true);
     }
     public void joyStickoff()
     {
